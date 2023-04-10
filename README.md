@@ -58,3 +58,11 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
 - Multilabel samples
 - XSS Injection
 
+
+## To do:
+- Combine các loại tấn công (Done)
+- Thử nghiệm các model Deeplearning (LSTM, GRU,...)
+- Thử nghiệm Transferlearning (Thử đánh giá nếu ko dùng Transferlearning thì có detect đc tấn công ko?)
+  + Detect các kiểu tấn công mới ko có trong training data
+  + Detect kiểu tấn công tương tự nhưng khác dataset (có thể hợp lý hơn với bài toàn cùng task, khác domain)
+- Tìm hiểu GAN áp dụng đc vào bài toàn của mình ntn

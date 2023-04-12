@@ -75,3 +75,9 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
   + Detect các kiểu tấn công mới ko có trong training data
   + Detect kiểu tấn công tương tự nhưng khác dataset (có thể hợp lý hơn với bài toàn cùng task, khác domain)
 - Tìm hiểu GAN áp dụng đc vào bài toàn của mình ntn
+
+## To do:
+- Đánh giá thuộc đúng nhóm tấn công nào **
+- Chạy thử Transfer Learning để đánh giá **
+- Mod Sec ***
+- Tìm hiểu áp dụng GAN **

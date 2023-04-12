@@ -53,15 +53,24 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
 5. 126
 6. 310
 
-## Data kiểm thử cho Transfer learning
-- OS Command Injection
+## Data kiểm thử cho Transfer learning (Đã combine OS Command Injection và Multilabel)
+- OS Command Injection 
 - Multilabel samples
 - XSS Injection
 
+## Kết quả multiclass đã combine:
+- TF-IDF + NB: 87.5
+- TF-IDF + RF: 96
+- LSTM: 97.5
+
+## Kết quả detect với data Transfer learning:
+- TF-IDF + NB: 82.1
+- TF-IDF + RF: 68.7
+- LSTM: 84.4
 
 ## To do:
 - Combine các loại tấn công (Done)
-- Thử nghiệm các model Deeplearning (LSTM, GRU,...)
+- Thử nghiệm các model Deeplearning (LSTM, GRU,...) (Done)
 - Thử nghiệm Transferlearning (Thử đánh giá nếu ko dùng Transferlearning thì có detect đc tấn công ko?)
   + Detect các kiểu tấn công mới ko có trong training data
   + Detect kiểu tấn công tương tự nhưng khác dataset (có thể hợp lý hơn với bài toàn cùng task, khác domain)

@@ -69,15 +69,28 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
 - LSTM: 84.4
 
 ## To do:
-- Combine các loại tấn công (Done)
-- Thử nghiệm các model Deeplearning (LSTM, GRU,...) (Done)
-- Thử nghiệm Transferlearning (Thử đánh giá nếu ko dùng Transferlearning thì có detect đc tấn công ko?) (Done)
-  + Detect các kiểu tấn công mới ko có trong training data
-  + Detect kiểu tấn công tương tự nhưng khác dataset (có thể hợp lý hơn với bài toàn cùng task, khác domain)
-- Tìm hiểu GAN áp dụng đc vào bài toàn của mình ntn
-
-## To do:
 - Đánh giá thuộc đúng nhóm tấn công nào **
 - Chạy thử Transfer Learning để đánh giá **
 - Mod Sec ***
 - Tìm hiểu áp dụng GAN **
+
+## Kết quả phân loại tập dữ liệu transferlearning
+- Tập nguồn: dataset_capec_combine.csv
+- Tập đích: dataset_capec_transfer.csv
+- Model được train trên tập nguồn và đánh giá trên tập đích
+
+| Methods | Naïve Bayes | Decision Tree | Random Forest |  Logistic Regression | AdaBoost |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| TF-IDF | 0.4 | 0.39 | 0.35 | 0.37 | 0.3 |
+
+## Kết quả Modsecurity
+- Vì lượng data rất lớn (600000 samples), mỗi lần infer một url trung bình 3s, vì vậy mới chạy kết quả trên 7000 samples bị tấn công
+- Phân loại data thành 4 phần (cho dễ chạy): normal_get, normal_post, attack_get, attack_post
+- Kết quả ở đây là xác định ModSec có phát hiện được tấn công hay không (binary task)
+- Kết quả thử nghiệm trên 7000 samples của tập data attack_get: 6% 
+
+## Kết quả chạy thử nghiệm Transfer Learning (áp dụng kĩ thuật GAN)
+- Tập nguồn: dataset_capec_combine.csv
+- Tập đích: dataset_capec_transfer.csv
+- Model được train supervised trên tập nguồn và unsupervised trên tập đích
+- Kết quả thử nghiệm trên 1 epoch (chưa fine-tune tham số): 0.54

@@ -95,4 +95,11 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
 - Model được train supervised trên tập nguồn và unsupervised trên tập đích
 - Kết quả thử nghiệm trên 1 epoch (chưa fine-tune tham số): 0.52
 
+## To do
+- Modsec
+- MMD
+- Deeplearning
+- Fine tune Bert
+
+
 ## Dataset link: https://drive.google.com/drive/folders/1I8fS2uSv4v3tlmVcuzzC07QTHWjFOCUr

@@ -103,3 +103,29 @@ Kiểu tấn công dành cho Transfer Learning: OS Command Injection
 
 
 ## Dataset link: https://drive.google.com/drive/folders/1I8fS2uSv4v3tlmVcuzzC07QTHWjFOCUr
+
+## Kết quả ModSecurity trên từng kiểu tấn công
+
+| Attacks | Precision | Recall | F1-Score |
+| :---: | :---: | :---: | :---: |
+| Injection | 0.83 | 0.76 | 0.79 |
+| Fake the source of data | 0.82 | 0.74 | 0.77 |
+| HTTP splitting | 0.81 | 0.73 | 0.76 |
+| Path traversal | 0.80 | 0.71 | 0.75 |
+| Manipulation | 0.62 | 0.51 | 0.56 |
+| Scanning software | 0.78 | 0.72 | 0.74 |
+
+## Kết quả sử dụng phương pháp GAN trong xác định kiểu tấn công mới với các bộ trích xuất đặc trưng
+
+| TF-IDF | BOW | WORD2VEC | BERT (Feature extractor) | BERT (Fine-tuning)
+| :---: | :---: | :---: | :---: | :---: |
+| 66.40 | 59.32 | 61.49 | 64.55 | 70.21 |
+
+- Trong quá trình training, Finetune BERT với GAN có một vài vấn đề như sau:
+
+  - Bert (Feature extractor) là đang dùng Discriminator (D) với đầu vào là hidden states của BERT, Generator (G) cố gắng tạo ra embedding của BERT để đánh lừa D. Nếu muốn finetune BERT, mình cần đưa BERT vào D, như vậy làm cho mô hình của D phức tạp hơn G nhiều => D luôn tốt hơn G
+  - Nếu muốn kết quả tốt nhất (có khả năng tốt nhất) thì ko làm việc trên embedding nữa. Đưa BERT vào cả D và G cho cân bằng, G ko tạo embedding nữa mà tạo hẳn ra câu luôn, do đó D cũng nhận vào 1 câu. Cái này làm cho BERT có thể finetune đc, mà 2 D và G cũng ngang nhau. Nhưng mà train phần này sẽ khó, tại vì phải train 2 BERT, mà chưa chắc đã hội tụ (loss bao gồm loss(bert) + loss(G) + loss(D)) + bản thân việc train model của GAN đã rất khó + thời gian train rất lâu + tốn memory
+  - Thử nghiệm hiện tại là cả G và D đang dùng chung 1 BERT để fine-tune, tuy nhiên như đã nói ở trên thì việc hội tụ rất khó và rất lâu + rất tốn mem (bản chất training GAN model đã khó + fine-tune BERT -> khó hơn nữa). Kết quả tốt nhất hiện nay là đạt 70% accuracy
+
+- Có thể tìm một vài hướng khác để thử nghiệm thêm, vì tối ưu GAN hiện tại cũng đang khá khó
+
